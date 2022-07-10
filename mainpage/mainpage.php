@@ -45,12 +45,15 @@ if(isset($_SESSION["user_id"])) {
         background-color: #ccc;
         color: #000;
         filter: brightness(110%);
+        
     }
 
     button:hover {
         background-color: #ccc;
         color: #000;
         filter: brightness(110%);
+        transition-duration: 0.4s;
+
     }
 </style>
 </head>
