@@ -41,7 +41,7 @@ $result = $stmt->execute([$_POST["name"],
                         "",
                         ""]);
 if($result) {
-    header("Location: /phpWeb/mainpage/mainpage.php");
+    header("Location: /phpWeb/signup/signup_success.html");
     exit;
 } else {
     die($mysqli->error . " " . $mysqli->errno);

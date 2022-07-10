@@ -59,7 +59,7 @@ if(isset($_SESSION["user_id"])) {
         <p>Hi <?=htmlspecialchars($user["name"]) ?></p>
         <a href="../logout/logout.php">Log out</a>
         <div>
-            <form action="process_tweet.php" method="post" novalidate>
+            <form action="process_tweet.php" method="post">
                 <h2>Tweet</h2>
                 <textarea id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
                 <button id="tweetMe">Tweet me</button>
