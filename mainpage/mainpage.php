@@ -70,8 +70,8 @@ if(isset($_SESSION["user_id"])) {
         </div>
         <br />
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'allTweets')" id="defaultOpen">All Tweets</button>
-            <button class="tablinks" onclick="openCity(event, 'followedUsers')">Followed Users</button>
+            <button class="tablinks" onclick="openTweets(event, 'allTweets')" id="defaultOpen">All Tweets</button>
+            <button class="tablinks" onclick="openTweets(event, 'followedUsers')">Followed Users</button>
         </div>
         <div id="allTweets" class="tabcontent">
             <h2>All Tweets</h2>
@@ -134,7 +134,7 @@ if(isset($_SESSION["user_id"])) {
 </body>
 <script>
 
-    function openCity(evt, cityName) {
+    function openTweets(evt, tweetName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -144,28 +144,12 @@ if(isset($_SESSION["user_id"])) {
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-        document.getElementById(cityName).style.display = "block";
+        document.getElementById(tweetName).style.display = "block";
         evt.currentTarget.className += " active";
     }
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
-
-    function deleteBtn(key) {
-        mainArr.splice(key, 1);
-        let newString = '';
-        let count = 0;
-        mainArr.forEach(function (currObj) {
-            btn.innerHTML = "Delete tweet";
-            btn.id = count;
-            newString += currObj.date + ': ' + currObj.tweet +  '<br>' + '<button id="' + count + '" onclick="deleteBtn(\'' + count + '\')"> Delete tweet </button> <br>';
-            count++;
-        });
-        document.getElementById("allTweets").innerHTML = newString;
-        console.log(mainArr);
-
-    }
-
 
 </script>
 </html>
