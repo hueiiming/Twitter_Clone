@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+date_default_timezone_set('Asia/Singapore');
 $dateTs = date('Y-m-d H:i:s', time());
 
 $mysqli = require __DIR__ . "/../database/dao.php";

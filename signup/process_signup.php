@@ -26,6 +26,7 @@ if($_POST["password"] !== $_POST["password_cfm"]) {
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
+date_default_timezone_set('Asia/Singapore');
 $dateTs = date('Y-m-d H:i:s', time());
 
 $mysqli = require __DIR__ . "/../database/dao.php";
