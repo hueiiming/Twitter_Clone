@@ -60,7 +60,7 @@ function checkSelected($uid, $sql) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
-    <link rel="stylesheet" href="/phpWeb/css/mainpage.css">
+    <link rel="stylesheet" href="/phpWeb/static/css/mainpage.css">
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <title>Twitter2.0</title>
 </head>
