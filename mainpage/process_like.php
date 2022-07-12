@@ -13,7 +13,7 @@ $stmt = $mysqli->prepare($sql);
 $result = $stmt->execute([$_GET["tweet"], $_SESSION["user_id"], $dateTs]);
 
 if($result) {
-    header("Location: mainpage.php");
+    // header("Location: mainpage.php");
 } else {
     die($mysqli->error . " " . $mysqli->errno);
 } 

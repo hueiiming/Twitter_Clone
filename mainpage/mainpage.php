@@ -78,15 +78,12 @@ function checkSelected($uid, $sql) {
         <br />
         <div class="tab">
             <button class="tablinks" onclick="openTweets(event, 'allTweets')" id="defaultOpen">All Tweets</button>
-            <button class="tablinks" onclick="openTweets(event, 'followedUsers')">Followed Users</button>
+            <button class="tablinks" onclick="openTweets(event, 'followedUsers')" id="followedOpen">Followed Users</button>
         </div>
 
         <div id="allTweets" class="tabcontent">
             <h2>All Tweets</h2>
             <hr />
-            <?php  {
-                
-            } ?> 
             <?php 
                 while($row = mysqli_fetch_array($tweetResult)) {
                     include '../common/tweetcard.php';
@@ -102,7 +99,7 @@ function checkSelected($uid, $sql) {
                 while($row = mysqli_fetch_array($tweetResult)) {?>
                     <?php
                         if(in_array($row["uid"], $result_array)) {
-                            include '../common/tweetcard.php';
+                            include '../common/tweetcard_followed.php';
                         } ?>
             <?php } ?>
         </div>
