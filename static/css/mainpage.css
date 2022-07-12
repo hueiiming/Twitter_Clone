@@ -67,10 +67,16 @@ margin-right: 10px;
 .followStatus {
     position: absolute;
     right: 0;
-    margin-right: 600px;
+    margin-right: 20px;
 }
 a .feather {
     cursor: pointer;
+}
+.profile {
+    position: absolute;
+    left: 200px;
+    top: 25px;
+    width: 100px;
 }
 @media screen and (max-width:430px){
     body {
@@ -101,14 +107,14 @@ a .feather {
     .followStatus {
     position: absolute;
     right: 0;
-    margin-right: 400px;
+    margin-right: 20px;
     }
 }
 @media screen and (max-width:768px){
     .followStatus {
     position: absolute;
     right: 0;
-    margin-right: 220px;
+    margin-right: 20px;
     }
 }
 @media screen and (max-width:425px){
