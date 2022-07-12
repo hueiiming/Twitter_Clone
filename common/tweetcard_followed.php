@@ -16,7 +16,7 @@
         <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avator">
         <div class="tweet-header-info">
             <?=htmlspecialchars($row["username"])?> <span>@<?=htmlspecialchars($row["username"])?></span><span>. (<?=date("Y-m-d", strtotime($row["date"]))?>) <?=date("h:i A", strtotime($row["date"])) ?>
-            <span class="followStatus"><a onclick="updateFollowedTweetFunction(<?=$row['uid']?>, '../mainpage/process_unfollow.php?follow='); return false;" href="">Unfollow</a></span>
+            <span class="followStatus"><a onclick="if(confirm('Unfollow <?=htmlspecialchars($row['username'])?>?')) updateFollowedTweetFunction(<?=$row['uid']?>, '../mainpage/process_unfollow.php?follow='); return false;" href="">Unfollow</a></span>
 
             </span>
             <p><?=$row["tweet"]?></p>
@@ -32,11 +32,11 @@
             
             <div class="retweets">
                 <?php if(checkSelected($_SESSION["user_id"], "select * from retweets where twt_id = {$row['id']}")) {?>
-                    <a onclick="updateFollowedTweetFunction(<?=$row['id']?>, '../mainpage/process_unretweet.php?tweet='); return false;" href="">
+                    <a onclick="if(confirm('Undo Retweet?')) updateFollowedTweetFunction(<?=$row['id']?>, '../mainpage/process_unretweet.php?tweet='); return false;" href="">
                         <svg style="color: green;" class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
                     </a>
                     <?php } else {?>
-                        <a onclick="updateFollowedTweetFunction(<?=$row['id']?>, '../mainpage/process_retweet.php?tweet='); return false;" href="">
+                        <a onclick="if(confirm('Retweet?')) updateFollowedTweetFunction(<?=$row['id']?>, '../mainpage/process_retweet.php?tweet='); return false;" href="">
                             <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
                         </a>
                 <?php }?>

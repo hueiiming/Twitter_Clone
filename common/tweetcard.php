@@ -22,14 +22,14 @@
         <?php
             if(in_array($row["uid"], $result_array)) { 
             ?>
-                <span class="followStatus"><a onclick="updateTweetFunction(<?=$row['uid']?>, '../mainpage/process_unfollow.php?follow='); return false;" href="">Unfollow</a></span>
+                <span class="followStatus"><a onclick="if(confirm('Unfollow <?=htmlspecialchars($row['username'])?>?')) updateTweetFunction(<?=$row['uid']?>, '../mainpage/process_unfollow.php?follow='); return false;" href="">Unfollow</a></span>
         <?php 
         
             } else {
                 if($_SESSION["user_id"] != $row['uid']) { ?>
-                    <span class="followStatus"><a onclick="updateTweetFunction(<?=$row['uid']?>, '../mainpage/process_follow.php?follow='); return false;" href="">Follow</a></span>
+                    <span class="followStatus"><a onclick="if(confirm('Follow <?=htmlspecialchars($row['username'])?>?')) updateTweetFunction(<?=$row['uid']?>, '../mainpage/process_follow.php?follow='); return false;" href="">Follow</a></span>
         <?php   } else { ?>
-                    <span class="followStatus"><a onclick="updateTweetFunction(<?=$row['uid']?>, '../mainpage/delete_tweet.php?tweet='); return false;" href="">Delete tweet</a></span>
+                    <span class="followStatus"><a onclick="if(confirm('Delete Tweet?')) updateTweetFunction(<?=$row['id']?>, '../mainpage/delete_tweet.php?tweet='); return false;" href="">Delete tweet</a></span>
         <?php
                 }
             }
@@ -48,11 +48,11 @@
             
             <div class="retweets">
                 <?php if(checkSelected($_SESSION["user_id"], "select * from retweets where twt_id = {$row['id']}")) {?>
-                    <a onclick="updateTweetFunction(<?=$row['id']?>, '../mainpage/process_unretweet.php?tweet='); return false;" href="">
+                    <a onclick="if(confirm('Undo Retweet?')) updateTweetFunction(<?=$row['id']?>, '../mainpage/process_unretweet.php?tweet='); return false;" href="">
                         <svg style="color: green;" class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
                     </a>
                     <?php } else {?>
-                        <a onclick="updateTweetFunction(<?=$row['id']?>, '../mainpage/process_retweet.php?tweet='); return false;" href="">
+                        <a onclick="if(confirm('Retweet?')) updateTweetFunction(<?=$row['id']?>, '../mainpage/process_retweet.php?tweet='); return false;" href="">
                             <svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
                         </a>
                 <?php }?>

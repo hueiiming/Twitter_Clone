@@ -61,15 +61,35 @@ function checkSelected($uid, $sql) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <link rel="stylesheet" href="/phpWeb/css/mainpage.css">
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <title>Twitter2.0</title>
 </head>
-
+<script>
+$(document).ready(function() {
+    $("#tweetMe").click(function() {
+        if($('#tweet').val() != '') {
+            if(confirm('Confirm Tweet?')) {
+                var url = "process_tweet.php"; 
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $("#tweetForm").serialize(), 
+                    success: function(data) {
+                        $('body').load('mainpage.php'); 
+                    }
+                });
+            }
+            return false;
+        }
+    });
+});
+</script>
 <body>
     <?php if(isset($user)):?>
         <p>Hi <?=htmlspecialchars($user["name"]) ?></p>
         <a href="../logout/logout.php">Log out</a>
         <div>
-            <form action="process_tweet.php" method="post">
+            <form id="tweetForm">
                 <h2>Tweet</h2>
                 <textarea id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
                 <button id="tweetMe">Tweet me</button>

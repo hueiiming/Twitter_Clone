@@ -22,7 +22,7 @@ $result = $stmt->execute([$_SESSION["user_id"],
                         ""]);
 
 if($result) {
-    header("Location: mainpage.php");
+    // header("Location: mainpage.php");
 } else {
     die($mysqli->error . " " . $mysqli->errno);
 } 
