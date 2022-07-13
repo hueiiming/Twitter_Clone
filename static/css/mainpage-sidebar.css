@@ -32,18 +32,23 @@
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 10px;
-    padding-top: 10px
+    padding-top: 10px;
+    background-color: #161f27;
+    border-radius: 100px;
+
 }
 
 .sidebar__item:hover {
     background-color: #519BDF33;
     border-radius: 100px;
     width: fit-content;
+    outline: none;
 }
 
 .sidebar__item:hover i,
 .sidebar__item:hover span {
     color: #1DA1F2 !important;
+    outline: none;
 }
 
 .sidebar__item.active {
@@ -51,13 +56,14 @@
     color: #1DA1F2 !important;
     border-radius: 100px;
     width: fit-content;
+    outline: none;
 }
 
 .sidebar__item.active i,
 .sidebar__item.active span {
     color: #1DA1F2 !important;
+    outline: none;
 }
-
 
 .sidebar__item__icon {
     display: flex;
@@ -73,4 +79,10 @@
     font-weight: bold;
     padding-left: 25px;
     font-size: 20px;
+}
+
+.avatorSmall {
+    border-radius: 100px;
+    width: 25px;
+    height: 25px;
 }

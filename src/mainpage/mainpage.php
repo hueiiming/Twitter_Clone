@@ -97,27 +97,28 @@ $(document).ready(function() {
                             <div class="sidebar__brand">
                                 <i class="fa fa-twitter"></i>
                             </div>
-                            <a id="homeBtn" href="" class="sidebar__item active">
+                            <button id="homeBtn" onclick="openTweets(event, 'followedUsers')" class="sidebar__item tablinks">
                                 <i class="sidebar__item__icon fa fa-home"></i>
                                 <span class="sidebar__item__text">Home</span>
-                            </a>
-                            <a href="#" class="sidebar__item">
+                            </button>
+                            <button id="explore" onclick="openTweets(event, 'allTweets')" class="sidebar__item tablinks">
                                 <i class="sidebar__item__icon fa fa-compass"></i>
                                 <span class="sidebar__item__text">Explore</span>
-                            </a>
-                            <a href="#" class="sidebar__item">
-                                <i class="sidebar__item__icon fa fa-bell"></i>
-                                <span class="sidebar__item__text">Notifications</span>
-                            </a>
-                            <a href="#" class="sidebar__item">
+                            </button>
+                            <button id="myBtn" onclick="openTweets(event, 'myTweets')" class="sidebar__item tablinks">
+                                <!-- <i class="sidebar__item__icon fa fa-bell"></i> -->
+                                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avatorSmall">
+                                <span class="sidebar__item__text">My Tweets</span>
+                            </button>
+                            <a href="" class="sidebar__item">
                                 <i class="sidebar__item__icon fa fa-envelope"></i>
                                 <span class="sidebar__item__text">Messages</span>
                             </a>
-                            <a href="#" class="sidebar__item">
+                            <a href="" class="sidebar__item">
                                 <i class="sidebar__item__icon fa fa-bookmark"></i>
                                 <span class="sidebar__item__text">Bookmarks</span>
                             </a>
-                            <a href="#" class="sidebar__item">
+                            <a href="" class="sidebar__item">
                                 <i class="sidebar__item__icon fa fa-list-alt"></i>
                                 <span class="sidebar__item__text">Lists</span>
                             </a>
@@ -125,19 +126,13 @@ $(document).ready(function() {
                     </div>  
                 </div>
                 <div class="col-sm-8">
-                    <form id="tweetForm">
-                        <h2>Tweet</h2>
-                        <textarea id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
-                        <button id="tweetMe">Tweet me</button>
-                    </form>
                     <br />
-                    <div class="tab">
+                    <!-- <div class="tab">
                         <button class="tablinks" onclick="openTweets(event, 'allTweets')" id="defaultOpen">All Tweets</button>
                         <button class="tablinks" onclick="openTweets(event, 'followedUsers')" id="followedOpen">Followed Users</button>
-                    </div>
-
+                    </div> -->
                     <div id="allTweets" class="tabcontent">
-                        <h2>All Tweets</h2>
+                        <h2>Explore Tweets</h2>
                         <hr />
                         <?php 
                             while($row = mysqli_fetch_array($tweetResult)) {
@@ -146,17 +141,33 @@ $(document).ready(function() {
                         ?>
                     </div>
                     <div id="followedUsers" class="tabcontent">
-                        <h2>Followed Users</h2>
+                        <h2>Home</h2>
                         <hr />
+                        <form id="tweetForm">
+                            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avatorTweet">
+                            <textarea id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
+                            <button id="tweetMe">Tweet</button>
+                        </form>
+                        <br />
                         <?php 
                             $sqlTweet = "select * from tweets order by date desc";
                             $tweetResult = $mysqli->query($sqlTweet);
-                            while($row = mysqli_fetch_array($tweetResult)) {?>
-                                <?php
-                                    if(in_array($row["uid"], $result_array)) {
-                                        include '../common/tweetcard_followed.php';
-                                    } ?>
-                        <?php } ?>
+                            while($row = mysqli_fetch_array($tweetResult)) {
+                                if(in_array($row["uid"], $result_array) || $_SESSION["user_id"] == $row["uid"]) {
+                                    include '../common/tweetcard_followed.php';
+                                } 
+                            } ?>
+                    </div>
+                    
+                    <div id="myTweets" class="tabcontent">
+                        <h2>My Tweets</h2>
+                        <hr />
+                        <?php 
+                            $sqlTweet = "select * from tweets where uid = {$_SESSION["user_id"]} order by date desc";
+                            $tweetResult = $mysqli->query($sqlTweet);
+                            while($row = mysqli_fetch_array($tweetResult)) {
+                                include '../common/tweetcard_followed.php';
+                            } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -190,7 +201,7 @@ $(document).ready(function() {
     }
 
     // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+    document.getElementById("homeBtn").click();
 
 </script>
 </html>

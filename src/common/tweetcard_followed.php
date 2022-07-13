@@ -5,9 +5,7 @@
             method: 'POST', 
             data: $(id).serialize() 
         }).done(function (response) { 
-            $('body').load('mainpage.php', function() {
-                document.getElementById("followedOpen").click();
-            });
+            $('body').load('mainpage.php');
         });
     }
 </script>
@@ -16,8 +14,11 @@
         <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avator">
         <div class="tweet-header-info">
             <?=htmlspecialchars($row["username"])?> <span>@<?=htmlspecialchars($row["username"])?></span><span>. (<?=date("Y-m-d", strtotime($row["date"]))?>) <?=date("h:i A", strtotime($row["date"])) ?>
-            <span class="followStatus"><a onclick="if(confirm('Unfollow <?=htmlspecialchars($row['username'])?>?')) updateFollowedTweetFunction(<?=$row['uid']?>, '../mainpage/process_unfollow.php?follow='); return false;" href="">Unfollow</a></span>
-
+            <?php if(in_array($row["uid"], $result_array)) { ?>
+                <span class="followStatus"><a onclick="if(confirm('Unfollow <?=htmlspecialchars($row['username'])?>?')) updateFollowedTweetFunction(<?=$row['uid']?>, '../mainpage/process_unfollow.php?follow='); return false;" href="">Unfollow</a></span>
+            <?php } else if ($_SESSION["user_id"] == $row["uid"]) { ?>
+                <span class="followStatus"><a onclick="if(confirm('Delete Tweet?')) updateFollowedTweetFunction(<?=$row['id']?>, '../mainpage/delete_tweet.php?tweet='); return false;" href="">Delete tweet</a></span>
+            <?php } ?>
             </span>
             <p><?=$row["tweet"]?></p>
         

@@ -20,6 +20,27 @@ button:hover {
     margin-right: 15px;
 }
 
+.avatorTweet {
+    width: 50px;
+    position: relative;
+    top: 50px;
+}
+
+#tweet {
+    width: 80%;
+    position: relative;
+    left: 60px;
+}
+
+#tweetMe {
+    position: absolute;
+    right: 47px;
+    background-color: #1DA1F2;
+    color: #fff;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
 .tweet-wrap {
 max-width:490px;
 margin-top: 50px;

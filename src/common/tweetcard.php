@@ -10,7 +10,9 @@
             method: 'POST', 
             data: $(id).serialize() 
         }).done(function (response) { 
-            $('body').load('mainpage.php');
+            $('body').load('mainpage.php', function() {
+                document.getElementById("explore").click();
+            });
         });
     }
 </script>
