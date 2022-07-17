@@ -28,19 +28,19 @@ $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 date_default_timezone_set('Asia/Singapore');
 $dateTs = date('Y-m-d H:i:s', time());
+$userImg = file_get_contents('https://cdn-icons-png.flaticon.com/512/847/847969.png');
 
 $mysqli = require __DIR__ . "/../database/dao.php";
-
-$sql = "insert into user (name, email, password_hash, date, following, followers) 
-        values (?, ?, ?, ?, ?, ?)";
+$sql = "insert into user (name, email, password_hash, date, profile_img) 
+        values (?, ?, ?, ?, ?)";
         
 $stmt = $mysqli->prepare($sql);
 $result = $stmt->execute([$_POST["name"],
                         $_POST["email"],
                         $password_hash,
                         $dateTs,
-                        "",
-                        ""]);
+                        $userImg]);
+
 if($result) {
     header("Location: /phpWeb/src/signup/signup_success.html");
     exit;

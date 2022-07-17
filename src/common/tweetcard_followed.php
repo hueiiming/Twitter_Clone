@@ -11,7 +11,7 @@
 </script>
 <div class="tweet-wrap">
     <div class="tweet-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avator">
+        <?php getImg($row["uid"], "avator")?>
         <div class="tweet-header-info">
             <?=htmlspecialchars($row["username"])?> <span>@<?=htmlspecialchars($row["username"])?></span><span>. (<?=date("Y-m-d", strtotime($row["date"]))?>) <?=date("h:i A", strtotime($row["date"])) ?>
             <?php if(in_array($row["uid"], $result_array)) { ?>

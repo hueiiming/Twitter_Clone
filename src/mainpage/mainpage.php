@@ -51,6 +51,15 @@ function checkSelected($uid, $sql) {
     return False;
 }
 
+function getImg($id, $classname) {
+    $mysqli = require __DIR__ . "/../database/dao.php";
+    $sqlImg = "select profile_img from user where id = {$id}";
+    $imgResult = $mysqli->query($sqlImg);
+    $result=mysqli_fetch_array($imgResult);
+    echo '<img src="data:image/jpeg;base64,'.base64_encode( $result['profile_img'] ).'" class="'.$classname.'"/>';
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +94,23 @@ $(document).ready(function() {
             return false;
         }
     });
+    $('input[type=file]').change(function(){
+    if($('input[type=file]').val()==''){
+        $('#profBtn').attr('disabled',true)
+    } 
+    else{
+      $('#profBtn').attr('disabled',false);
+    }
+})
+    // $("#profBtn").click(function() {
+    //     if(confirm('Confirm Update Profile Picture?')) {
+    //         location.href = 'process_profile_pic.php';
+    //     }
+    //     return false;
+
+    // });
 });
+
 </script>
 <body>
     <?php if(isset($user)):?>
@@ -144,7 +169,7 @@ $(document).ready(function() {
                         <h2>Home</h2>
                         <hr />
                         <form id="tweetForm">
-                            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avatorTweet">
+                            <?php getImg($_SESSION["user_id"], "avatorTweet")?>
                             <textarea id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
                             <button id="tweetMe">Tweet</button>
                         </form>
@@ -172,7 +197,12 @@ $(document).ready(function() {
                 </div>
                 <div class="col-sm-2">
                     <div class="profile">
-                        <p>Hi <?=htmlspecialchars($user["name"]) ?></p>
+                        <?php getImg($_SESSION["user_id"], "avator")?>
+                        <p><?=htmlspecialchars($user["name"]) ?></p>
+                        <form method="post" action="process_profile_pic.php" enctype="multipart/form-data">
+                            <input style="font-size: 10px;" type="file" id="profile_pic" name="profile_pic" accept=".png,.gif,.jpg" />
+                            <button style="font-size: 8px;" id="profBtn" disabled>Update Picture</button>
+                        </form>
                         <a href="../logout/logout.php">Log out</a>
                     </div>
                 </div>
