@@ -6,4 +6,4 @@
 - View all Tweets from other users (Explore) <br />
 - View current Logged in User Tweets only (My Tweets) <br />
  
-<img width="1457" alt="Screenshot 2022-07-17 at 6 36 56 PM" src="https://user-images.githubusercontent.com/61011188/179394428-06feffdf-f1db-4fde-8f1e-4b8f52c348ab.png">
+<img width="1456" alt="Screenshot 2022-07-17 at 6 42 40 PM" src="https://user-images.githubusercontent.com/61011188/179394604-3c4528d0-0a69-4db5-b370-04f1c7f2ccbe.png">
