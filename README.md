@@ -1,7 +1,7 @@
 # Twitter_Clone
  Twitter Clone's current look. <br /> <br />
  Users can: <br />
-- Tweet, Retweet, Like, Signup, Login, Change Profile Picture
+- Tweet, Retweet, Like, Follow users, Signup, Login, Change Profile Picture
 - View followed Users Tweets only (Home) <br />
 - View all Tweets from other users (Explore) <br />
 - View current Logged in User Tweets only (My Tweets) <br />
