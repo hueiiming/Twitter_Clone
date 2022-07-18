@@ -24,6 +24,7 @@ button:hover {
     width: 50px;
     position: relative;
     top: 50px;
+    border-radius: 100px;
 }
 
 #tweet {

@@ -95,20 +95,13 @@ $(document).ready(function() {
         }
     });
     $('input[type=file]').change(function(){
-    if($('input[type=file]').val()==''){
-        $('#profBtn').attr('disabled',true)
-    } 
-    else{
-      $('#profBtn').attr('disabled',false);
-    }
-})
-    // $("#profBtn").click(function() {
-    //     if(confirm('Confirm Update Profile Picture?')) {
-    //         location.href = 'process_profile_pic.php';
-    //     }
-    //     return false;
-
-    // });
+        if($('input[type=file]').val()==''){
+            $('#profBtn').attr('disabled',true)
+        } 
+        else{
+        $('#profBtn').attr('disabled',false);
+        }
+    });
 });
 
 </script>
@@ -131,8 +124,7 @@ $(document).ready(function() {
                                 <span class="sidebar__item__text">Explore</span>
                             </button>
                             <button id="myBtn" onclick="openTweets(event, 'myTweets')" class="sidebar__item tablinks">
-                                <!-- <i class="sidebar__item__icon fa fa-bell"></i> -->
-                                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="" class="avatorSmall">
+                                <?php getImg($_SESSION["user_id"], "avatorSmall")?>
                                 <span class="sidebar__item__text">My Tweets</span>
                             </button>
                             <a href="" class="sidebar__item">
@@ -170,7 +162,7 @@ $(document).ready(function() {
                         <hr />
                         <form id="tweetForm">
                             <?php getImg($_SESSION["user_id"], "avatorTweet")?>
-                            <textarea id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
+                            <textarea style="resize: none;" id="tweet" name="tweet" placeholder="Tweet..." required></textarea>
                             <button id="tweetMe">Tweet</button>
                         </form>
                         <br />
